@@ -1,15 +1,15 @@
+import os
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 from app.routers import projects, applications, syllabus, grades, submissions
 
 app = FastAPI(title="EnSer API", version="2.0.0")
 
+_extra = os.getenv("ALLOWED_ORIGINS", "")
 ALLOWED_ORIGINS = [
     "http://localhost:5173",
     "http://localhost:3000",
-]
-# Add your Vercel URL here after deployment, e.g.:
-# ALLOWED_ORIGINS.append("https://enser-v2.vercel.app")
+] + [o.strip() for o in _extra.split(",") if o.strip()]
 
 app.add_middleware(
     CORSMiddleware,

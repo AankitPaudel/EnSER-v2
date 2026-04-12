@@ -1,6 +1,6 @@
-from fastapi import APIRouter, Depends, HTTPException
+from fastapi import APIRouter, Depends, HTTPException, Header
 from sqlalchemy.orm import Session
-from typing import List
+from typing import List, Optional
 from uuid import UUID
 from app.database import get_db
 from app.services.openai_service import generate_syllabus_and_rubric
@@ -50,7 +50,11 @@ def get_professor_applications(professor_id: UUID, db: Session = Depends(get_db)
 
 
 @router.patch("/{application_id}/accept")
-def accept_application(application_id: int, db: Session = Depends(get_db)):
+def accept_application(
+    application_id: int,
+    db: Session = Depends(get_db),
+    x_openai_key: Optional[str] = Header(default=None),
+):
     app_record = db.query(models.Application).filter(models.Application.id == application_id).first()
     if not app_record:
         raise HTTPException(status_code=404, detail="Application not found")
@@ -65,6 +69,7 @@ def accept_application(application_id: int, db: Session = Depends(get_db)):
         project_title=project.title,
         project_description=project.description,
         student_name=student.full_name,
+        user_api_key=x_openai_key,
     )
 
     syllabus = models.Syllabus(

@@ -2,7 +2,6 @@
 
 > Connecting communities, students, and professors through real-world engineering projects, powered by AI.
 
-🔗 **Live Demo:** *(add your Vercel URL after deployment)*
 🎯 **Try it:** Click "Try as Student / Professor / Community" on the landing page — no sign-up needed
 
 ---

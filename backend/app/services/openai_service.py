@@ -3,20 +3,22 @@ from fastapi import HTTPException
 import os
 import json
 
-_api_key = os.getenv("OPENAI_API_KEY")
-client = OpenAI(api_key=_api_key) if _api_key else None
+_server_api_key = os.getenv("OPENAI_API_KEY")
 
 
 def generate_syllabus_and_rubric(
     project_title: str,
     project_description: str,
     student_name: str,
+    user_api_key: str | None = None,
 ) -> dict:
-    if not client:
+    api_key = user_api_key or _server_api_key
+    if not api_key:
         raise HTTPException(
             status_code=503,
-            detail="OpenAI API key is not configured. Add OPENAI_API_KEY to your .env file.",
+            detail="No OpenAI API key provided. Please enter your API key in Settings.",
         )
+    client = OpenAI(api_key=api_key)
 
     prompt = f"""
 You are an academic advisor helping a professor create a structured learning plan.
