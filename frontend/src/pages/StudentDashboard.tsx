@@ -140,25 +140,24 @@ export default function StudentDashboard() {
   const appliedIds = new Set(applications.map(a => a.project_id))
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f0f4f8' }} className="min-h-screen text-gray-800">
       <Navbar />
 
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">Student Dashboard</h1>
-          <p className="text-slate-400 mt-1">Welcome, {profile?.full_name} · {profile?.department} Engineering</p>
+          <h1 style={{ fontFamily: "'Ubuntu', sans-serif", color: '#084278' }} className="text-3xl font-bold">Student Dashboard</h1>
+          <p className="text-gray-500 mt-1">Welcome, <strong>{profile?.full_name}</strong> · {profile?.department} Engineering</p>
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-slate-800 mb-8">
+        <div className="flex border-b border-gray-200 mb-8">
           {(['browse', 'applications'] as const).map(t => (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`px-6 py-3 text-sm font-medium capitalize transition-colors border-b-2 ${
-                tab === t
-                  ? 'border-blue-500 text-white'
-                  : 'border-transparent text-slate-400 hover:text-white'
+              style={tab === t ? { borderBottomColor: '#084278', color: '#084278' } : {}}
+              className={`px-6 py-3 text-sm font-semibold capitalize transition-colors border-b-2 ${
+                tab === t ? '' : 'border-transparent text-gray-400 hover:text-gray-700'
               }`}
             >
               {t === 'browse' ? 'Browse Projects' : `My Applications (${applications.length})`}
@@ -171,7 +170,7 @@ export default function StudentDashboard() {
           <div>
             <div className="flex flex-col sm:flex-row gap-3 mb-6">
               <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-500" size={16} />
+                <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={16} />
                 <input
                   type="text"
                   placeholder="Search projects..."

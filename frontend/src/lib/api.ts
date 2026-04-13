@@ -4,6 +4,9 @@ const api = axios.create({
   baseURL: import.meta.env.VITE_API_URL ?? 'http://localhost:8000',
 })
 
+export const getStoredApiKey = () => localStorage.getItem('openai_api_key') ?? ''
+export const setStoredApiKey = (key: string) => localStorage.setItem('openai_api_key', key)
+
 // ── Projects ──────────────────────────────────────────────────────────────────
 export const getProjects = (department?: string) =>
   api.get('/projects', { params: department ? { department } : {} })
@@ -30,8 +33,10 @@ export const getStudentApplications = (studentId: string) =>
 export const getProfessorApplications = (professorId: string) =>
   api.get(`/applications/professor/${professorId}`)
 
-export const acceptApplication = (id: number) =>
-  api.patch(`/applications/${id}/accept`)
+export const acceptApplication = (id: number, apiKey?: string) =>
+  api.patch(`/applications/${id}/accept`, null, {
+    headers: apiKey ? { 'x-openai-key': apiKey } : {},
+  })
 
 export const rejectApplication = (id: number) =>
   api.patch(`/applications/${id}/reject`)

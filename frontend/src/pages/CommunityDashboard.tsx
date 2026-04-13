@@ -64,18 +64,19 @@ export default function CommunityDashboard() {
 
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f0f4f8' }} className="min-h-screen text-gray-800">
       <Navbar />
       <div className="max-w-5xl mx-auto px-6 py-10">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
           <div>
-            <h1 className="text-3xl font-bold">Community Dashboard</h1>
-            <p className="text-slate-400 mt-1">Welcome, {profile?.full_name}</p>
+            <h1 style={{ fontFamily: "'Ubuntu', sans-serif", color: '#084278' }} className="text-3xl font-bold">Community Dashboard</h1>
+            <p className="text-gray-500 mt-1">Welcome, <strong>{profile?.full_name}</strong></p>
           </div>
           <button
             onClick={() => setShowForm(v => !v)}
-            className="flex items-center gap-2 bg-orange-600 hover:bg-orange-500 text-white px-5 py-2.5 rounded-lg font-medium transition-colors"
+            style={{ backgroundColor: '#084278' }}
+            className="flex items-center gap-2 text-white px-5 py-2.5 rounded-lg font-semibold hover:opacity-90 transition-all"
           >
             <Plus size={16} />
             Propose Project

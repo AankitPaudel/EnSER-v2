@@ -9,12 +9,14 @@ import {
   getSyllabusByApplication,
   getSubmissions,
   assignGrade,
+  getStoredApiKey,
+  setStoredApiKey,
 } from '../lib/api'
 import { supabase } from '../lib/supabase'
 import toast from 'react-hot-toast'
 import {
   CheckCircle, XCircle, Brain,
-  Star, ExternalLink
+  Star, ExternalLink, Key, Eye, EyeOff
 } from 'lucide-react'
 import type { Application, Syllabus, Submission } from '../types'
 
@@ -36,6 +38,11 @@ export default function ProfessorDashboard() {
   const [submissions, setSubmissions] = useState<Submission[]>([])
   const [gradeForm, setGradeForm] = useState({ submission_id: 0, score: '', feedback: '' })
   const [grading, setGrading] = useState(false)
+
+  // API Key (BYOK)
+  const [apiKey, setApiKey] = useState(getStoredApiKey())
+  const [showKey, setShowKey] = useState(false)
+  const [keyInput, setKeyInput] = useState(getStoredApiKey())
 
   useEffect(() => {
     if (!profile) return
@@ -79,10 +86,20 @@ export default function ProfessorDashboard() {
     }
   }
 
+  const saveApiKey = () => {
+    setStoredApiKey(keyInput)
+    setApiKey(keyInput)
+    toast.success('API key saved!')
+  }
+
   const handleAccept = async (app: Application) => {
+    if (!apiKey) {
+      toast.error('Please enter your OpenAI API key in Settings first.')
+      return
+    }
     setGeneratingFor(app.id)
     try {
-      const res = await acceptApplication(app.id)
+      const res = await acceptApplication(app.id, apiKey)
       const syllabusRes = await getSyllabus(res.data.syllabus_id)
       setSyllabusModal(syllabusRes.data)
       toast.success('Application accepted! AI syllabus generated.')
@@ -134,37 +151,77 @@ export default function ProfessorDashboard() {
   const accepted = applications.filter(a => a.status === 'accepted')
 
   return (
-    <div className="min-h-screen bg-slate-950 text-white">
+    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f0f4f8' }} className="min-h-screen text-gray-800">
       <Navbar />
 
       <div className="max-w-6xl mx-auto px-6 py-10">
+        {/* Header */}
         <div className="mb-8">
-          <h1 className="text-3xl font-bold">Professor Dashboard</h1>
-          <p className="text-slate-400 mt-1">Welcome, {profile?.full_name}</p>
+          <h1 style={{ fontFamily: "'Ubuntu', sans-serif", color: '#084278' }} className="text-3xl font-bold">Professor Dashboard</h1>
+          <p className="text-gray-500 mt-1">Welcome back, <strong>{profile?.full_name}</strong></p>
+        </div>
+
+        {/* API Key Section */}
+        <div className="bg-white border border-blue-100 rounded-2xl p-6 mb-8 shadow-sm">
+          <div className="flex items-center gap-3 mb-3">
+            <Key size={20} style={{ color: '#084278' }} />
+            <h2 style={{ color: '#084278', fontFamily: "'Ubuntu', sans-serif" }} className="font-bold text-lg">OpenAI API Key</h2>
+            {apiKey && <span className="text-xs bg-green-100 text-green-700 px-2 py-0.5 rounded-full font-medium">✓ Key saved</span>}
+          </div>
+          <p className="text-gray-500 text-sm mb-4">
+            Your API key is stored only in your browser. It's used to generate AI syllabuses when you accept a student. <strong>Your key never touches our servers logs.</strong>
+          </p>
+          <div className="flex gap-3">
+            <div className="relative flex-1">
+              <input
+                type={showKey ? 'text' : 'password'}
+                value={keyInput}
+                onChange={e => setKeyInput(e.target.value)}
+                placeholder="sk-..."
+                style={{ border: '1px solid #d1d5db' }}
+                className="w-full px-4 py-2.5 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-900 pr-10"
+              />
+              <button
+                type="button"
+                onClick={() => setShowKey(v => !v)}
+                className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+              >
+                {showKey ? <EyeOff size={15} /> : <Eye size={15} />}
+              </button>
+            </div>
+            <button
+              onClick={saveApiKey}
+              style={{ backgroundColor: '#084278' }}
+              className="text-white px-5 py-2.5 rounded-lg text-sm font-semibold hover:opacity-90 transition-all"
+            >
+              Save Key
+            </button>
+          </div>
         </div>
 
         {/* Stats */}
         <div className="grid grid-cols-3 gap-4 mb-8">
           {[
-            { label: 'Pending', value: pending.length, color: 'text-yellow-400' },
-            { label: 'Active Students', value: accepted.length, color: 'text-emerald-400' },
-            { label: 'Total Applications', value: applications.length, color: 'text-blue-400' },
+            { label: 'Pending Applications', value: pending.length, color: '#f59e0b' },
+            { label: 'Active Students', value: accepted.length, color: '#10b981' },
+            { label: 'Total Applications', value: applications.length, color: '#084278' },
           ].map(({ label, value, color }) => (
-            <div key={label} className="bg-slate-900 border border-slate-800 rounded-xl p-5">
-              <div className={`text-2xl font-bold ${color}`}>{value}</div>
-              <div className="text-slate-400 text-sm">{label}</div>
+            <div key={label} className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
+              <div style={{ color }} className="text-3xl font-bold">{value}</div>
+              <div className="text-gray-500 text-sm mt-1">{label}</div>
             </div>
           ))}
         </div>
 
         {/* Tabs */}
-        <div className="flex border-b border-slate-800 mb-8">
+        <div className="flex border-b border-gray-200 mb-8">
           {(['pending', 'accepted', 'grading'] as const).map(t => (
             <button
               key={t}
               onClick={() => setTab(t)}
-              className={`px-6 py-3 text-sm font-medium capitalize transition-colors border-b-2 ${
-                tab === t ? 'border-purple-500 text-white' : 'border-transparent text-slate-400 hover:text-white'
+              style={tab === t ? { borderBottomColor: '#084278', color: '#084278' } : {}}
+              className={`px-6 py-3 text-sm font-semibold capitalize transition-colors border-b-2 ${
+                tab === t ? 'border-b-2' : 'border-transparent text-gray-400 hover:text-gray-700'
               }`}
             >
               {t === 'pending' ? `Pending (${pending.length})` : t === 'accepted' ? `Active (${accepted.length})` : 'Grade Submissions'}
@@ -173,30 +230,30 @@ export default function ProfessorDashboard() {
         </div>
 
         {loading ? (
-          <div className="text-slate-400 text-sm">Loading...</div>
+          <div className="text-gray-400 text-sm py-10 text-center">Loading...</div>
         ) : (
           <>
             {/* Pending */}
             {tab === 'pending' && (
               <div className="space-y-4">
                 {pending.length === 0 ? (
-                  <div className="bg-slate-900 border border-slate-800 border-dashed rounded-xl p-10 text-center text-slate-500">
-                    No pending applications.
+                  <div className="bg-white border border-dashed border-gray-300 rounded-xl p-10 text-center text-gray-400">
+                    No pending applications yet.
                   </div>
                 ) : pending.map(app => (
-                  <div key={app.id} className="bg-slate-900 border border-slate-800 rounded-xl p-5">
+                  <div key={app.id} className="bg-white border border-gray-100 rounded-xl p-5 shadow-sm">
                     <div className="flex items-start justify-between">
                       <div>
-                        <h3 className="font-medium">{studentNames[app.student_id] ?? 'Student'}</h3>
-                        <p className="text-slate-400 text-sm mt-0.5">
-                          Applied to: <span className="text-white">{projectTitles[app.project_id] ?? `Project #${app.project_id}`}</span>
+                        <h3 className="font-semibold text-gray-800">{studentNames[app.student_id] ?? 'Student'}</h3>
+                        <p className="text-gray-500 text-sm mt-0.5">
+                          Applied to: <span style={{ color: '#084278' }} className="font-medium">{projectTitles[app.project_id] ?? `Project #${app.project_id}`}</span>
                         </p>
-                        <p className="text-slate-500 text-xs mt-1">{new Date(app.created_at).toLocaleDateString()}</p>
+                        <p className="text-gray-400 text-xs mt-1">{new Date(app.created_at).toLocaleDateString()}</p>
                       </div>
                       <div className="flex gap-2">
                         <button
                           onClick={() => handleReject(app.id)}
-                          className="flex items-center gap-1.5 text-sm text-red-400 border border-red-400/20 hover:bg-red-400/10 px-4 py-2 rounded-lg transition-colors"
+                          className="flex items-center gap-1.5 text-sm text-red-500 border border-red-200 hover:bg-red-50 px-4 py-2 rounded-lg transition-colors"
                         >
                           <XCircle size={14} /> Reject
                         </button>
