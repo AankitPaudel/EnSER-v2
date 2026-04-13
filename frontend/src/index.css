@@ -1,1 +1,105 @@
 @import "tailwindcss";
+
+/* ── Google Fonts fallback ─────────────────────────── */
+:root {
+  --navy:       #084278;
+  --navy-dark:  #062f5a;
+  --navy-light: #0a5299;
+
+  /* Light mode */
+  --bg:         #f0f4f8;
+  --bg-card:    #ffffff;
+  --bg-nav:     #084278;
+  --text:       #1a202c;
+  --text-muted: #6b7280;
+  --border:     #e2e8f0;
+  --input-bg:   #ffffff;
+}
+
+[data-theme="dark"] {
+  --bg:         #0f172a;
+  --bg-card:    #1e293b;
+  --bg-nav:     #062f5a;
+  --text:       #f1f5f9;
+  --text-muted: #94a3b8;
+  --border:     #334155;
+  --input-bg:   #1e293b;
+}
+
+/* ── Base ──────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background-color: var(--bg);
+  color: var(--text);
+  font-family: 'Open Sans', sans-serif;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+/* ── Scrollbar ─────────────────────────────────────── */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb { background: var(--navy); border-radius: 4px; }
+
+/* ── Card ──────────────────────────────────────────── */
+.card {
+  background-color: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 24px;
+  transition: background-color 0.2s, border-color 0.2s;
+}
+
+/* ── Input ─────────────────────────────────────────── */
+.input {
+  width: 100%;
+  background-color: var(--input-bg);
+  border: 1px solid var(--border);
+  color: var(--text);
+  border-radius: 8px;
+  padding: 10px 16px;
+  font-size: 14px;
+  outline: none;
+  transition: border-color 0.15s, box-shadow 0.15s;
+}
+.input:focus {
+  border-color: var(--navy);
+  box-shadow: 0 0 0 3px rgba(8,66,120,0.12);
+}
+
+/* ── Button primary ────────────────────────────────── */
+.btn-primary {
+  background-color: var(--navy);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  padding: 10px 20px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+.btn-primary:hover { opacity: 0.88; }
+.btn-primary:disabled { opacity: 0.5; cursor: not-allowed; }
+
+/* ── Label ─────────────────────────────────────────── */
+.label {
+  display: block;
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--text-muted);
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ── Muted text ────────────────────────────────────── */
+.text-muted { color: var(--text-muted); }
+
+/* ── Animate fade-in ───────────────────────────────── */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.fade-in { animation: fadeIn 0.3s ease both; }

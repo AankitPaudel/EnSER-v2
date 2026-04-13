@@ -140,13 +140,13 @@ export default function StudentDashboard() {
   const appliedIds = new Set(applications.map(a => a.project_id))
 
   return (
-    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f0f4f8' }} className="min-h-screen text-gray-800">
+    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: 'var(--bg)', color: 'var(--text)' }} className="min-h-screen fade-in">
       <Navbar />
 
       <div className="max-w-6xl mx-auto px-6 py-10">
         <div className="mb-8">
-          <h1 style={{ fontFamily: "'Ubuntu', sans-serif", color: '#084278' }} className="text-3xl font-bold">Student Dashboard</h1>
-          <p className="text-gray-500 mt-1">Welcome, <strong>{profile?.full_name}</strong> · {profile?.department} Engineering</p>
+          <h1 style={{ fontFamily: "'Ubuntu', sans-serif", color: 'var(--navy)' }} className="text-3xl font-bold">Student Dashboard</h1>
+          <p style={{ color: 'var(--text-muted)' }} className="mt-1">Welcome, <strong style={{ color: 'var(--text)' }}>{profile?.full_name}</strong> · {profile?.department} Engineering</p>
         </div>
 
         {/* Tabs */}

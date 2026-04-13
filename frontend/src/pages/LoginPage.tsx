@@ -38,9 +38,9 @@ export default function LoginPage() {
   }
 
   return (
-    <div style={{ fontFamily: "'Open Sans', sans-serif", backgroundColor: '#f0f4f8' }} className="min-h-screen flex flex-col">
+    <div style={{ fontFamily: "'Open Sans', sans-serif", backgroundColor: 'var(--bg)', color: 'var(--text)' }} className="min-h-screen flex flex-col fade-in">
       {/* Nav */}
-      <nav style={{ backgroundColor: 'white', borderBottom: '1px solid #e5e7eb' }} className="px-8 py-3">
+      <nav style={{ backgroundColor: 'var(--bg-card)', borderBottom: '1px solid var(--border)' }} className="px-8 py-3">
         <Link to="/" className="flex items-center gap-3 w-fit">
           <img src="/logo.png" alt="EnSer" className="h-10 w-auto" />
         </Link>
@@ -48,7 +48,7 @@ export default function LoginPage() {
 
       <div className="flex-1 flex items-center justify-center px-4 py-12">
         <div className="w-full max-w-md">
-          <div className="bg-white rounded-2xl shadow-lg overflow-hidden">
+          <div style={{ backgroundColor: 'var(--bg-card)', border: '1px solid var(--border)' }} className="rounded-2xl shadow-lg overflow-hidden">
             {/* Header */}
             <div style={{ backgroundColor: '#084278' }} className="px-8 py-6 text-center">
               <h1 style={{ fontFamily: "'Ubuntu', sans-serif" }} className="text-2xl font-bold text-white">Welcome Back</h1>

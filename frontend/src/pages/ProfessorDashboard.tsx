@@ -151,7 +151,7 @@ export default function ProfessorDashboard() {
   const accepted = applications.filter(a => a.status === 'accepted')
 
   return (
-    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: '#f0f4f8' }} className="min-h-screen text-gray-800">
+    <div style={{ fontFamily: "'Poppins', sans-serif", backgroundColor: 'var(--bg)', color: 'var(--text)' }} className="min-h-screen fade-in">
       <Navbar />
 
       <div className="max-w-6xl mx-auto px-6 py-10">
