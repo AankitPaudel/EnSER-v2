@@ -31,7 +31,6 @@ export default function CommunityDashboard() {
 
   const [tab, setTab] = useState('dashboard')
   const [myProjects, setMyProjects] = useState<Project[]>([])
-  const [allProjects, setAllProjects] = useState<Project[]>([])
   const [loading, setLoading] = useState(true)
   const [submitting, setSubmitting] = useState(false)
   const [form, setForm] = useState({ title: '', description: '', department: '' })
@@ -51,7 +50,6 @@ export default function CommunityDashboard() {
     try {
       const res = await getProjects()
       const all: Project[] = res.data
-      setAllProjects(all)
       setMyProjects(all.filter(p => p.proposed_by === profile?.id))
     } catch { toast.error('Failed to load projects') }
     finally { setLoading(false) }
@@ -231,7 +229,6 @@ export default function CommunityDashboard() {
             <Card><div style={{ textAlign: 'center', padding: '40px 24px', color: muted }}><div style={{ fontSize: 48, marginBottom: 12 }}>📊</div><p style={{ margin: 0 }}>No projects to track yet.</p></div></Card>
           ) : myProjects.map(project => {
             const st = statusStyle[project.status]
-            const totalStudents = allProjects.filter(p => p.id === project.id).length
             return (
               <Card key={project.id}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 12 }}>
