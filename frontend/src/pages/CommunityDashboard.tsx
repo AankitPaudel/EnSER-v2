@@ -123,26 +123,35 @@ export default function CommunityDashboard() {
             ))}
           </div>
 
-          {/* Recent Projects */}
-          {myProjects.length > 0 && (
-            <Card>
-              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", color: navy, fontWeight: 700, margin: '0 0 14px', fontSize: 16 }}>Recent Proposals</h3>
-              <div className="space-y-3">
-                {myProjects.slice(0, 3).map(p => {
-                  const st = statusStyle[p.status]
-                  return (
-                    <div key={p.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 14px', backgroundColor: isDark ? '#0f172a' : '#f8fafc', borderRadius: 10 }}>
-                      <div>
-                        <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>{p.title}</div>
-                        <div style={{ color: muted, fontSize: 11 }}>{p.department} Engineering</div>
-                      </div>
-                      <span style={{ backgroundColor: st.bg, color: st.color, fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 20 }}>{st.label}</span>
+          {/* Demo Showcase — always visible sample projects */}
+          <Card>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", color: navy, fontWeight: 700, margin: 0 }}>Demo: Your Proposed Projects</h3>
+              <button onClick={() => setTab('projects')} style={{ backgroundColor: `${ROLE_COLOR}10`, color: ROLE_COLOR, border: `1px solid ${ROLE_COLOR}30`, borderRadius: 8, padding: '6px 14px', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
+                View All →
+              </button>
+            </div>
+            <div className="space-y-3">
+              {[
+                { title: 'Smart Traffic Light Optimization System', dept: 'Computer Science', status: 'In Progress', statusBg: '#dbeafe', statusColor: '#2563eb', icon: '🚦', students: 1 },
+                { title: 'Solar-Powered Water Purification Unit', dept: 'Civil Engineering', status: 'Open', statusBg: '#d1fae5', statusColor: '#059669', icon: '💧', students: 0 },
+                { title: 'Community Bridge Structural Analysis', dept: 'Civil Engineering', status: 'Open', statusBg: '#d1fae5', statusColor: '#059669', icon: '🌉', students: 0 },
+                { title: 'Electric Vehicle Charging Network', dept: 'Electrical Engineering', status: 'Open', statusBg: '#d1fae5', statusColor: '#059669', icon: '⚡', students: 0 },
+                { title: 'Industrial Waste Heat Recovery System', dept: 'Mechanical Engineering', status: 'Open', statusBg: '#d1fae5', statusColor: '#059669', icon: '🔥', students: 0 },
+              ].map(({ title, dept, status, statusBg, statusColor, icon, students }) => (
+                <div key={title} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '12px 14px', backgroundColor: isDark ? '#0f172a' : '#f8fafc', borderRadius: 10 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                    <span style={{ fontSize: 20 }}>{icon}</span>
+                    <div>
+                      <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>{title}</div>
+                      <div style={{ color: muted, fontSize: 11 }}>{dept} {students > 0 ? `· ${students} student working on this` : ''}</div>
                     </div>
-                  )
-                })}
-              </div>
-            </Card>
-          )}
+                  </div>
+                  <span style={{ backgroundColor: statusBg, color: statusColor, fontSize: 10, fontWeight: 700, padding: '3px 10px', borderRadius: 20, flexShrink: 0 }}>{status}</span>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
       )}
 

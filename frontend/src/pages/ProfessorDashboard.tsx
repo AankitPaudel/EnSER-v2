@@ -165,6 +165,35 @@ export default function ProfessorDashboard() {
               </button>
             ))}
           </div>
+
+          {/* Demo Showcase — Sample accepted students */}
+          <Card>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", color: navy, fontWeight: 700, margin: 0 }}>Demo: Active Student Projects</h3>
+              <button onClick={() => setTab('active')} style={{ backgroundColor: `${ROLE_COLOR}10`, color: ROLE_COLOR, border: `1px solid ${ROLE_COLOR}30`, borderRadius: 8, padding: '6px 14px', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
+                View All →
+              </button>
+            </div>
+            <div className="space-y-3">
+              {[
+                { student: 'Henry Thompson', project: 'Smart Traffic Light Optimization System', dept: 'Computer Science', grade: 87, status: 'Graded', statusColor: '#10b981' },
+                { student: 'Sarah Mitchell', project: 'Solar-Powered Water Purification Unit', dept: 'Civil Engineering', grade: null, status: 'Submitted', statusColor: '#3b82f6' },
+                { student: 'David Park', project: 'EV Charging Network Feasibility Study', dept: 'Electrical Engineering', grade: null, status: 'In Progress', statusColor: '#f59e0b' },
+              ].map(({ student, project, dept, grade, status, statusColor }) => (
+                <div key={student} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '14px 16px', backgroundColor: isDark ? '#0f172a' : '#f8fafc', borderRadius: 10, borderLeft: `3px solid ${statusColor}` }}>
+                  <div>
+                    <div style={{ fontWeight: 600, fontSize: 13, marginBottom: 2 }}>🎓 {student}</div>
+                    <div style={{ color: muted, fontSize: 12 }}>{project}</div>
+                    <div style={{ color: muted, fontSize: 11, marginTop: 2 }}>{dept}</div>
+                  </div>
+                  <div style={{ textAlign: 'right', flexShrink: 0 }}>
+                    <span style={{ backgroundColor: `${statusColor}15`, color: statusColor, fontSize: 11, fontWeight: 700, padding: '3px 10px', borderRadius: 10, display: 'block', marginBottom: 4 }}>{status}</span>
+                    {grade !== null && <div style={{ color: navy, fontWeight: 700, fontSize: 16 }}>{grade}/100</div>}
+                  </div>
+                </div>
+              ))}
+            </div>
+          </Card>
         </div>
       )}
 

@@ -16,8 +16,8 @@ const roleMap: Record<string, string> = {
   'demo-community@enser.dev': 'community',
 }
 const nameMap: Record<string, string> = {
-  student: 'Alex Johnson',
-  professor: 'Dr. Maria Rodriguez',
+  student: 'Henry Thompson',
+  professor: 'Dr. Richard Chen',
   community: 'City Planning Department',
 }
 const deptMap: Record<string, string | null> = {
@@ -85,7 +85,7 @@ export default function LandingPage() {
         <div className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
           <div>
             <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/20 text-white text-xs px-4 py-2 rounded-full mb-6 font-medium">
-              ⚡ Powered by GPT-4o · React · FastAPI · Supabase
+              ⚡ React 18 · TypeScript · FastAPI · PostgreSQL · Supabase
             </div>
             <h1 style={{ fontFamily: "'Ubuntu', sans-serif" }} className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
               Engineering<br />
@@ -208,12 +208,12 @@ export default function LandingPage() {
           </div>
           <div className="grid md:grid-cols-3 gap-6">
             {[
-              { icon: '🤖', title: 'AI Syllabus Generation', desc: 'GPT-4o generates a complete syllabus with weekly milestones, learning objectives, and a grading rubric the moment a student is accepted.', color: '#084278' },
+              { icon: '🤖', title: 'AI Syllabus Generation', desc: 'Professors can use their own AI API key to instantly generate a complete syllabus — weekly milestones, learning objectives, and a structured grading rubric.', color: '#084278' },
               { icon: '🔐', title: 'Role-Based Auth', desc: 'Three distinct roles — Community, Student, Professor — each with their own dashboard, permissions, and workflow powered by Supabase Auth.', color: '#7c3aed' },
               { icon: '📄', title: 'PDF Submission System', desc: 'Students upload final project reports as PDFs directly to Supabase Storage. Professors can view and download them for review.', color: '#10b981' },
               { icon: '⭐', title: 'Structured Grading', desc: 'Professors grade submissions with a score and detailed rubric-aligned feedback. Students receive transparent, structured evaluations.', color: '#f59e0b' },
               { icon: '🔔', title: 'Real-time Notifications', desc: 'Students know instantly when applications are accepted or rejected. Professors are alerted when new applications arrive for their review.', color: '#ef4444' },
-              { icon: '🔑', title: 'Bring Your Own API Key', desc: 'Professors enter their own OpenAI key — stored only in their browser. No shared key, no unexpected charges, full control.', color: '#06b6d4' },
+              { icon: '🔑', title: 'Bring Your Own API Key', desc: 'Professors enter their own AI key — stored only in their browser, never on the server. Full control, no shared costs, no lock-in.', color: '#06b6d4' },
             ].map(({ icon, title, desc, color }) => (
               <div key={title} style={{ backgroundColor: isDark ? '#1e293b' : '#f8fafc', border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}` }} className="rounded-2xl p-6 hover:shadow-md transition-shadow">
                 <div style={{ backgroundColor: `${color}18`, width: 48, height: 48 }} className="rounded-xl flex items-center justify-center text-2xl mb-4">{icon}</div>
@@ -240,7 +240,7 @@ export default function LandingPage() {
               EnSer (Engineering Service) is a full-stack service-learning platform that connects <strong className="text-white">university engineering departments</strong> with <strong className="text-white">real community challenges</strong>.
             </p>
             <p className="text-blue-100 leading-relaxed mb-8">
-              Students don't work on textbook problems — they solve actual city infrastructure, environmental, and technology challenges proposed by real organizations. When a professor accepts a student, <strong className="text-white">GPT-4o instantly generates a professional syllabus and grading rubric</strong>, saving hours of administrative work.
+              Students don't work on textbook problems — they solve actual city infrastructure, environmental, and technology challenges proposed by real organizations. Professors can optionally use an AI key to <strong className="text-white">instantly generate a professional syllabus and grading rubric</strong>, saving hours of administrative work.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -331,8 +331,8 @@ export default function LandingPage() {
             </div>
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-blue-300">
-            <span>Built with React 18, FastAPI, Supabase & OpenAI GPT-4o</span>
-            <span>© 2024 Designed by Sohan, Ankit & Kushal</span>
+            <span>Built with React 18, TypeScript, FastAPI & Supabase</span>
+            <span>© 2025 Built by Ankit Paudel</span>
           </div>
         </div>
       </footer>

@@ -159,6 +159,41 @@ export default function StudentDashboard() {
               ))}
             </div>
           </div>
+
+          {/* Demo Showcase — Always visible sample projects */}
+          <div style={{ backgroundColor: cardBg, border: `1px solid ${border}`, borderRadius: 14, padding: 24 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
+              <h3 style={{ fontFamily: "'Ubuntu', sans-serif", color: navy, fontWeight: 700, margin: 0 }}>Featured Community Projects</h3>
+              <button onClick={() => setTab('browse')} style={{ backgroundColor: `${navy}10`, color: navy, border: `1px solid ${navy}30`, borderRadius: 8, padding: '6px 14px', fontSize: 12, fontWeight: 600, cursor: 'pointer' }}>
+                View All →
+              </button>
+            </div>
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                { title: 'Smart Traffic Light Optimization', dept: 'Computer Science', status: 'In Progress', color: '#3b82f6', icon: '🚦', desc: 'AI-driven traffic system reducing peak-hour wait times by 30% across downtown intersections.' },
+                { title: 'Solar-Powered Water Purification Unit', dept: 'Civil Engineering', status: 'Open', color: ROLE_COLOR, icon: '💧', desc: 'Portable solar-powered unit purifying 200L/day for rural communities using locally sourced materials.' },
+                { title: 'Community Bridge Structural Analysis', dept: 'Civil Engineering', status: 'Open', color: ROLE_COLOR, icon: '🌉', desc: 'Full structural integrity assessment and reinforcement proposals for the Main Street pedestrian bridge.' },
+                { title: 'EV Charging Network Feasibility', dept: 'Electrical Engineering', status: 'Open', color: ROLE_COLOR, icon: '⚡', desc: 'Evaluate and plan 10-station EV charging network across downtown with cost-benefit and grid analysis.' },
+              ].map(({ title, dept, status, color, icon, desc }) => (
+                <div key={title} style={{ backgroundColor: isDark ? '#0f172a' : '#f8fafc', border: `1px solid ${border}`, borderRadius: 12, padding: 16 }}>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+                      <span style={{ fontSize: 22 }}>{icon}</span>
+                      <div>
+                        <div style={{ fontWeight: 600, fontSize: 13 }}>{title}</div>
+                        <div style={{ color: muted, fontSize: 11, marginTop: 2 }}>{dept}</div>
+                      </div>
+                    </div>
+                    <span style={{ backgroundColor: `${color}15`, color, fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 10, flexShrink: 0 }}>{status}</span>
+                  </div>
+                  <p style={{ color: muted, fontSize: 12, lineHeight: 1.5, margin: '0 0 10px' }}>{desc}</p>
+                  <button onClick={() => setTab('browse')} style={{ backgroundColor: navy, color: 'white', border: 'none', borderRadius: 7, padding: '6px 14px', fontSize: 11, fontWeight: 600, cursor: 'pointer' }}>
+                    Apply Now →
+                  </button>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       )}
 
