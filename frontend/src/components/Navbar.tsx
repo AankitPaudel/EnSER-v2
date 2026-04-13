@@ -23,7 +23,7 @@ export default function Navbar() {
     <nav style={{ backgroundColor: 'var(--bg-nav)', fontFamily: "'Poppins', sans-serif" }} className="px-6 py-3 shadow-md">
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         <Link to="/" className="flex items-center gap-3">
-          <img src="/logo.png" alt="EnSer" className="h-9 w-auto brightness-0 invert" />
+          <img src="/logo.png" alt="EnSer" style={{ height: 40, width: 40, borderRadius: '50%', objectFit: 'cover' }} />
           <span className="text-white font-bold text-lg">
             EnSer <span className="text-blue-300 text-sm font-medium">2.0</span>
           </span>

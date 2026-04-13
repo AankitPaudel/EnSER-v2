@@ -58,7 +58,7 @@ export default function RegisterPage() {
       {/* Navbar */}
       <nav style={{ backgroundColor: navy, padding: '12px 24px', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
         <Link to="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-          <img src="/logo.png" alt="EnSer" style={{ height: 36, filter: 'brightness(0) invert(1)' }} />
+          <img src="/logo.png" alt="EnSer" style={{ height: 40, width: 40, borderRadius: '50%', objectFit: 'cover' }} />
           <span style={{ color: 'white', fontFamily: "'Ubuntu', sans-serif", fontWeight: 700, fontSize: 18 }}>EnSer <span style={{ color: '#93c5fd', fontSize: 13, fontWeight: 400 }}>2.0</span></span>
         </Link>
         <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>

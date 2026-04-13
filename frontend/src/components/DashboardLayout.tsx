@@ -61,7 +61,7 @@ export default function DashboardLayout({ profile, navItems, activeTab, onTabCha
       >
         {/* Logo */}
         <div style={{ padding: '20px 16px', borderBottom: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', gap: 12 }}>
-          <img src="/logo.png" alt="EnSer" style={{ height: 36, flexShrink: 0, filter: 'brightness(0) invert(1)' }} />
+          <img src="/logo.png" alt="EnSer" style={{ height: 40, width: 40, flexShrink: 0, borderRadius: '50%', objectFit: 'cover' }} />
           {sidebarOpen && (
             <div>
               <div style={{ fontFamily: "'Ubuntu', sans-serif", color: 'white', fontWeight: 700, fontSize: 16, lineHeight: 1.2 }}>EnSer</div>

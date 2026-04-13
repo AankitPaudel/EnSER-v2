@@ -59,7 +59,7 @@ export default function LandingPage() {
       <nav style={{ backgroundColor: navy, position: 'sticky', top: 0, zIndex: 50 }} className="px-6 py-3 shadow-lg">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <a href="#home" className="flex items-center gap-3">
-            <img src="/logo.png" alt="EnSer" className="h-10 w-auto brightness-0 invert" />
+            <img src="/logo.png" alt="EnSer" style={{ height: 42, width: 42, borderRadius: '50%', objectFit: 'cover' }} />
             <span className="text-white font-bold text-xl" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
               EnSer <span className="text-blue-300 text-sm font-normal">2.0</span>
             </span>
@@ -316,7 +316,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 mb-8 pb-8" style={{ borderBottom: '1px solid rgba(255,255,255,0.1)' }}>
             <div className="flex items-center gap-3">
-              <img src="/logo.png" alt="EnSer" className="h-10 brightness-0 invert" />
+              <img src="/logo.png" alt="EnSer" style={{ height: 42, width: 42, borderRadius: '50%', objectFit: 'cover' }} />
               <div>
                 <div style={{ fontFamily: "'Ubuntu', sans-serif" }} className="font-bold text-xl">EnSer 2.0</div>
                 <div className="text-blue-300 text-xs">Engineering Service Platform</div>
