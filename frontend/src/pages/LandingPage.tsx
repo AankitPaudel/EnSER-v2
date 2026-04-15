@@ -71,8 +71,10 @@ export default function LandingPage() {
             </span>
           </a>
           <div className="flex items-center gap-6">
-            {['Home','About','Contact'].map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden md:block">{item}</a>
+            {['Home', 'Workflow', 'About', 'Contact'].map(item => (
+              <a key={item} href={`#${item.toLowerCase()}`} className="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden md:block">
+                {item}
+              </a>
             ))}
             <button onClick={toggle} className="text-blue-200 hover:text-white transition-colors p-1.5 rounded-lg hover:bg-white/10">
               {isDark ? <Sun size={17}/> : <Moon size={17}/>}
@@ -88,38 +90,41 @@ export default function LandingPage() {
       {/* ── HERO ─────────────────────────────────────────── */}
       <section id="home" style={{ background: `linear-gradient(135deg, ${navy} 0%, #0a5299 50%, #1a3a6b 100%)` }} className="relative overflow-hidden">
         <div className="absolute inset-0 opacity-10" style={{ backgroundImage: 'radial-gradient(circle at 20% 50%, white 1px, transparent 1px), radial-gradient(circle at 80% 20%, white 1px, transparent 1px)', backgroundSize: '60px 60px' }} />
-        <div className="max-w-7xl mx-auto px-6 py-24 grid md:grid-cols-2 gap-12 items-center relative z-10">
-          <div>
-            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/20 text-white text-xs px-4 py-2 rounded-full mb-6 font-medium">
+        <div className="max-w-7xl mx-auto px-6 sm:px-8 pt-16 pb-20 md:pt-14 md:pb-24 lg:pt-12 grid md:grid-cols-2 gap-10 lg:gap-14 xl:gap-16 items-start relative z-10">
+          <div className="md:pr-2 lg:pr-4 min-w-0">
+            <div className="inline-flex items-center gap-2 bg-white/15 backdrop-blur border border-white/20 text-white text-xs px-4 py-2 rounded-full mb-5 font-medium tracking-wide">
               ⚡ React 18 · TypeScript · FastAPI · PostgreSQL · Supabase
             </div>
-            <h1 style={{ fontFamily: "'Ubuntu', sans-serif" }} className="text-5xl md:text-6xl font-bold text-white leading-tight mb-6">
+            <h1 style={{ fontFamily: "'Ubuntu', sans-serif" }} className="text-4xl sm:text-5xl md:text-6xl font-bold text-white leading-[1.08] mb-5">
               Engineering<br />
               <span style={{ color: '#60a5fa' }}>Meets</span> Real<br />
               World Impact
             </h1>
-            <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-lg">
+            <p className="text-blue-100/95 text-base md:text-lg leading-relaxed mb-8 max-w-xl text-pretty">
               <strong className="text-white">Real partners, real deliverables.</strong> Cities and organizations post real engineering challenges; students choose projects, follow AI-guided syllabuses, and deliver real solutions; professors evaluate with structured, AI-powered rubrics and provide clear feedback; and communities validate outcomes and suggest improvements—creating a seamless, end-to-end ecosystem that turns real-world problems into impactful, career-ready experience.
             </p>
-            <div className="flex flex-wrap gap-4">
-              <button onClick={() => navigate('/register')} className="bg-white font-bold px-8 py-3.5 rounded-full hover:bg-blue-50 transition-all shadow-lg text-sm" style={{ color: navy }}>
+            <div className="flex flex-wrap gap-3 sm:gap-4">
+              <button onClick={() => navigate('/register')} className="bg-white font-bold px-7 sm:px-8 py-3.5 rounded-full hover:bg-blue-50 transition-all shadow-lg text-sm" style={{ color: navy }}>
                 Join for Free →
               </button>
-              <a href="#demo" className="border-2 border-white/40 text-white font-semibold px-8 py-3.5 rounded-full hover:bg-white/10 transition-all text-sm">
+              <a href="#demo" className="border-2 border-white/40 text-white font-semibold px-7 sm:px-8 py-3.5 rounded-full hover:bg-white/10 transition-all text-sm inline-flex items-center justify-center">
                 Live Demo
               </a>
             </div>
-            {/* Tech Badges */}
-            <div className="flex flex-wrap gap-3 mt-10">
+            <div className="flex flex-wrap gap-2.5 sm:gap-3 mt-8 sm:mt-9">
               {['React 18','TypeScript','FastAPI','Supabase','GPT-4o','Tailwind'].map(tech => (
-                <span key={tech} className="bg-white/10 border border-white/20 text-blue-100 text-xs px-3 py-1.5 rounded-full font-medium">{tech}</span>
+                <span key={tech} className="bg-white/10 border border-white/20 text-blue-100/95 text-xs px-3 py-1.5 rounded-full font-medium">{tech}</span>
               ))}
             </div>
           </div>
-          <div className="flex justify-center">
-            <div className="relative">
-              <div className="absolute -inset-4 bg-blue-400/20 rounded-3xl blur-2xl" />
-              <img src="/hero-banner.png" alt="Engineering collaboration" className="relative w-full max-w-lg rounded-2xl shadow-2xl border-2 border-white/20" />
+          <div className="flex justify-center md:justify-end w-full md:-translate-y-2 lg:-translate-y-3 xl:-translate-y-1 mt-4 md:mt-0">
+            <div className="relative w-full max-w-md lg:max-w-lg shrink-0">
+              <div className="absolute -inset-3 sm:-inset-4 bg-blue-400/25 rounded-3xl blur-2xl" />
+              <img
+                src="/hero-banner.png"
+                alt="Engineering collaboration"
+                className="relative w-full h-auto rounded-2xl shadow-2xl border-2 border-white/25 ring-1 ring-black/10"
+              />
             </div>
           </div>
         </div>
@@ -198,7 +203,11 @@ export default function LandingPage() {
       {/* ── LIVE DEMO ─────────────────────────────────────── */}
       <section id="demo" style={{ backgroundColor: isDark ? '#0f172a' : '#ffffff' }} className="py-20">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <div className="inline-block bg-blue-100 text-blue-800 text-xs font-bold px-4 py-2 rounded-full mb-4 uppercase tracking-wider">
+          <div
+            className={`inline-block text-xs font-bold px-4 py-2 rounded-full mb-4 uppercase tracking-wider border ${
+              isDark ? 'bg-blue-950/50 text-blue-200 border-blue-800/60' : 'bg-blue-100 text-blue-800 border-transparent'
+            }`}
+          >
             No Sign-up Required
           </div>
           <h2 style={{ fontFamily: "'Ubuntu', sans-serif", color: isDark ? '#f1f5f9' : navy }} className="text-4xl font-bold mb-4">
@@ -285,8 +294,8 @@ export default function LandingPage() {
 
       {/* ── ABOUT ─────────────────────────────────────────── */}
       <section id="about" style={{ backgroundColor: navy }} className="py-20">
-        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14 items-center">
-          <div>
+        <div className="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-10 md:gap-14 items-start">
+          <div className="md:pt-1">
             <img src="/community.jpg" alt="Community engineering" className="rounded-2xl shadow-2xl w-full" />
           </div>
           <div>
@@ -363,7 +372,7 @@ export default function LandingPage() {
               </div>
             </div>
             <div className="flex gap-6">
-              {['Home','About','Contact','Sign In','Register'].map(item => (
+              {['Home', 'Workflow', 'About', 'Contact', 'Sign In', 'Register'].map(item => (
                 <a key={item} href={item === 'Sign In' ? '#' : item === 'Register' ? '#' : `#${item.toLowerCase()}`}
                   onClick={item === 'Sign In' ? () => navigate('/login') : item === 'Register' ? () => navigate('/register') : undefined}
                   className="text-blue-200 hover:text-white text-sm transition-colors">{item}</a>
@@ -372,7 +381,7 @@ export default function LandingPage() {
           </div>
           <div className="flex flex-col md:flex-row items-center justify-between gap-4 text-sm text-blue-300">
             <span>Built with React 18, TypeScript, FastAPI & Supabase</span>
-            <span>© 2025 Built by Ankit Paudel</span>
+            <span>© 2026 Built by Ankit Paudel</span>
           </div>
         </div>
       </footer>
