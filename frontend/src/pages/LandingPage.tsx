@@ -59,12 +59,12 @@ export default function LandingPage() {
   const isDark = theme === 'dark'
 
   return (
-    <div style={{ fontFamily: "'Open Sans', sans-serif", backgroundColor: isDark ? '#0f172a' : '#ffffff', color: isDark ? '#f1f5f9' : '#1a202c' }}>
+    <div className="antialiased" style={{ fontFamily: "'Open Sans', sans-serif", backgroundColor: isDark ? '#0f172a' : '#ffffff', color: isDark ? '#f1f5f9' : '#1a202c' }}>
 
       {/* ── NAVBAR ───────────────────────────────────────── */}
-      <nav style={{ backgroundColor: navy, position: 'sticky', top: 0, zIndex: 50 }} className="px-6 py-3 shadow-lg">
+      <nav className="sticky top-0 z-50 border-b border-white/10 bg-[#084278]/92 backdrop-blur-md supports-[backdrop-filter]:bg-[#084278]/88 px-6 py-3 shadow-lg">
         <div className="max-w-7xl mx-auto flex items-center justify-between">
-          <a href="#home" className="flex items-center gap-3">
+          <a href="#home" className="flex items-center gap-3 rounded-lg focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80">
             <img src="/logo.png" alt="EnSer" style={{ height: 42, width: 42, borderRadius: '50%', objectFit: 'cover' }} />
             <span className="text-white font-bold text-xl" style={{ fontFamily: "'Ubuntu', sans-serif" }}>
               EnSer <span className="text-blue-300 text-sm font-normal">2.0</span>
@@ -72,7 +72,11 @@ export default function LandingPage() {
           </a>
           <div className="flex items-center gap-6">
             {['Home', 'Workflow', 'About', 'Contact'].map(item => (
-              <a key={item} href={`#${item.toLowerCase()}`} className="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden md:block">
+              <a
+                key={item}
+                href={`#${item.toLowerCase()}`}
+                className="text-blue-200 hover:text-white text-sm font-medium transition-colors hidden md:block rounded-md focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white/80"
+              >
                 {item}
               </a>
             ))}
@@ -117,7 +121,7 @@ export default function LandingPage() {
               ))}
             </div>
           </div>
-          <div className="flex justify-center md:justify-end w-full md:-translate-y-2 lg:-translate-y-3 xl:-translate-y-1 mt-4 md:mt-0">
+          <div className="flex justify-center md:justify-end w-full mt-8 md:mt-10 lg:mt-12">
             <div className="relative w-full max-w-md lg:max-w-lg shrink-0">
               <div className="absolute -inset-3 sm:-inset-4 bg-blue-400/25 rounded-3xl blur-2xl" />
               <img
