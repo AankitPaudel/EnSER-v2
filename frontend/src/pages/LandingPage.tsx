@@ -99,7 +99,7 @@ export default function LandingPage() {
               World Impact
             </h1>
             <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-lg">
-              <strong className="text-white">Real partners, real deliverables.</strong> Cities and organizations post engineering needs; students ship solutions that professors can grade with structured rubrics—and optionally spin up a full syllabus in minutes with their own AI key.
+              <strong className="text-white">Real partners, real deliverables.</strong> Cities and organizations post real engineering challenges; students choose projects, follow AI-guided syllabuses, and deliver real solutions; professors evaluate with structured, AI-powered rubrics and provide clear feedback; and communities validate outcomes and suggest improvements—creating a seamless, end-to-end ecosystem that turns real-world problems into impactful, career-ready experience.
             </p>
             <div className="flex flex-wrap gap-4">
               <button onClick={() => navigate('/register')} className="bg-white font-bold px-8 py-3.5 rounded-full hover:bg-blue-50 transition-all shadow-lg text-sm" style={{ color: navy }}>
