@@ -93,7 +93,7 @@ export default function LandingPage() {
               World Impact
             </h1>
             <p className="text-blue-100 text-lg leading-relaxed mb-8 max-w-lg">
-              EnSer bridges <strong className="text-white">communities</strong>, <strong className="text-white">students</strong>, and <strong className="text-white">professors</strong> around real engineering projects — with AI-generated syllabuses, structured grading, and seamless collaboration.
+              <strong className="text-white">Real partners, real deliverables.</strong> Cities and organizations post engineering needs; students ship solutions that professors can grade with structured rubrics—and optionally spin up a full syllabus in minutes with their own AI key.
             </p>
             <div className="flex flex-wrap gap-4">
               <button onClick={() => navigate('/register')} className="bg-white font-bold px-8 py-3.5 rounded-full hover:bg-blue-50 transition-all shadow-lg text-sm" style={{ color: navy }}>
@@ -236,11 +236,8 @@ export default function LandingPage() {
             <h2 style={{ fontFamily: "'Ubuntu', sans-serif" }} className="text-4xl font-bold text-white mb-6">
               Redefining Engineering Education
             </h2>
-            <p className="text-blue-100 leading-relaxed mb-4">
-              EnSer (Engineering Service) is a full-stack service-learning platform that connects <strong className="text-white">university engineering departments</strong> with <strong className="text-white">real community challenges</strong>.
-            </p>
             <p className="text-blue-100 leading-relaxed mb-8">
-              Students don't work on textbook problems — they solve actual city infrastructure, environmental, and technology challenges proposed by real organizations. Professors can optionally use an AI key to <strong className="text-white">instantly generate a professional syllabus and grading rubric</strong>, saving hours of administrative work.
+              <strong className="text-white">EnSer (Engineering Service)</strong> is where university engineering meets community impact: departments take on live infrastructure, environmental, and tech challenges from real partners—not textbook drills. Faculty still run the course, but can use an AI key to <strong className="text-white">generate a professional syllabus and grading rubric in one step</strong>, cutting hours of admin before the work even starts.
             </p>
             <div className="grid grid-cols-2 gap-4">
               {[
@@ -267,7 +264,7 @@ export default function LandingPage() {
             <h2 style={{ fontFamily: "'Ubuntu', sans-serif", color: isDark ? '#f1f5f9' : navy }} className="text-4xl font-bold mb-4">Get in Touch</h2>
             <p style={{ color: isDark ? '#94a3b8' : '#6b7280' }}>Have questions or want to bring EnSer to your institution? We'd love to connect.</p>
           </div>
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="max-w-xl mx-auto">
             <form className="space-y-4" onSubmit={e => e.preventDefault()}>
               {[
                 { placeholder: 'Your Name', type: 'text' },
@@ -292,21 +289,6 @@ export default function LandingPage() {
                 Send Message
               </button>
             </form>
-            <div className="space-y-5">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2744.4!2d-116.9!3d46.7!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDbCsDQy!5e0!3m2!1sen!2sus!4v1" width="100%" height="220" className="rounded-xl border-0" allowFullScreen loading="lazy" title="map" />
-              <div className="space-y-4">
-                {[
-                  { icon: '📍', text: '875 Perimeter Dr, Moscow, ID 83844' },
-                  { icon: '✉️', text: 'contact@enser.dev' },
-                  { icon: '📞', text: '+1 (208) 555-0100' },
-                ].map(({ icon, text }) => (
-                  <div key={text} className="flex items-center gap-3">
-                    <span className="text-xl">{icon}</span>
-                    <span style={{ color: isDark ? '#94a3b8' : '#6b7280' }} className="text-sm">{text}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
           </div>
         </div>
       </section>
