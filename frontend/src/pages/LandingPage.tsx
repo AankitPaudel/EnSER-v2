@@ -26,6 +26,12 @@ const deptMap: Record<string, string | null> = {
   community: null,
 }
 
+const workflowRoles = [
+  { icon: '🏙️', role: 'Community', color: '#f59e0b', blurb: 'Shares real-world engineering problems.' },
+  { icon: '🎓', role: 'Students', color: '#10b981', blurb: 'Apply → get AI syllabus → build & submit projects/reports.' },
+  { icon: '👨‍🏫', role: 'Professors', color: '#7c3aed', blurb: 'Review → evaluate → grade with feedback.' },
+] as const
+
 export default function LandingPage() {
   const navigate = useNavigate()
   const { theme, toggle } = useTheme()
@@ -134,6 +140,58 @@ export default function LandingPage() {
               <div style={{ color: isDark ? '#94a3b8' : '#6b7280' }} className="text-sm mt-1">{label}</div>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* ── WORKFLOW ──────────────────────────────────────── */}
+      <section
+        id="workflow"
+        style={{
+          backgroundColor: isDark ? '#0f172a' : '#ffffff',
+          borderTop: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`,
+        }}
+        className="py-16"
+      >
+        <div className="max-w-5xl mx-auto px-6">
+          <h2 style={{ fontFamily: "'Ubuntu', sans-serif", color: isDark ? '#f1f5f9' : navy }} className="text-2xl sm:text-3xl md:text-4xl font-bold text-center mb-10 leading-tight px-2">
+            EnSer (Engineering Service) – Workflow
+          </h2>
+          <div className="grid md:grid-cols-3 gap-5">
+            {workflowRoles.map(({ icon, role, color, blurb }) => (
+              <div
+                key={role}
+                style={{
+                  backgroundColor: isDark ? '#1e293b' : '#f8fafc',
+                  border: `1px solid ${isDark ? '#334155' : '#e2e8f0'}`,
+                  borderTop: `3px solid ${color}`,
+                }}
+                className="rounded-2xl p-5 text-left shadow-sm"
+              >
+                <div className="flex items-center gap-2 mb-2">
+                  <span className="text-2xl" aria-hidden>{icon}</span>
+                  <span style={{ fontFamily: "'Ubuntu', sans-serif", color: isDark ? '#f1f5f9' : navy }} className="font-bold text-lg">
+                    {role}
+                  </span>
+                </div>
+                <p style={{ color: isDark ? '#94a3b8' : '#64748b' }} className="text-sm leading-relaxed">
+                  {blurb}
+                </p>
+              </div>
+            ))}
+          </div>
+          <div
+            style={{
+              backgroundColor: isDark ? '#172554' : '#eff6ff',
+              border: `1px solid ${isDark ? '#334155' : '#bfdbfe'}`,
+            }}
+            className="mt-10 rounded-2xl px-5 py-4 sm:px-8 text-center max-w-3xl mx-auto"
+          >
+            <p className="text-base sm:text-lg leading-relaxed m-0" style={{ color: isDark ? '#e2e8f0' : '#1e293b' }}>
+              <span className="mr-1.5" aria-hidden>👉</span>
+              <strong style={{ color: navy }}>Simple workflow:</strong>{' '}
+              <span style={{ color: isDark ? '#cbd5e1' : '#475569' }}>Problem → Student builds → Professor evaluates</span>
+            </p>
+          </div>
         </div>
       </section>
 
