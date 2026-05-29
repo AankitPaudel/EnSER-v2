@@ -1,6 +1,7 @@
 # EnSer 2.0 — Engineering Service Platform
 
 A full-stack service-learning platform that bridges **university engineering departments** with **real community challenges**. This is the redesigned and re-engineered version of my original EnSER project — rebuilt from the ground up with a modern tech stack, role-based authentication, AI-assisted workflow, and a clean professional UI.
+Live Demo: https://en-ser-v2.vercel.app/
 
 ---
 
